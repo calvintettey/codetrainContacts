@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
   },
 
   codetrainText: {
-    fontSize: 36,
+    fontSize: 25,
     textAlign: "center",
   },
 
   getstartedText: {
-    fontSize: 22,
+    fontSize: 18,
     borderBottomWidth: 2,
     borderBottomColor: "red",
   },

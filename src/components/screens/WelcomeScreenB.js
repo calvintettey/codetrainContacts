@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
   },
 
   registerButton: {
-    fontSize: 20,
+    fontSize: 16,
     borderBottomWidth: 2,
     borderBottomColor: "red",
   },
 
   signinButton: {
-    fontSize: 20,
+    fontSize: 16,
     borderBottomWidth: 2,
     borderBottomColor: "red",
   },
