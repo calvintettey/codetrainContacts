@@ -44,7 +44,9 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.footer}>
         <View style={styles.footerBar}></View>
         <Text style={{ fontSize: 16, color:"black" }}>Want to add a new connection?</Text>
-        <TouchableOpacity style={styles.scanBtn}>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate("QR Scanner");
+          }} style={styles.scanBtn}>
           <Text style={{ fontSize: 16, color:"#d91139" }}>Scan QR</Text>
         </TouchableOpacity>
       </View>

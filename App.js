@@ -11,6 +11,8 @@ import MyDetailsScreen from "./src/components/screens/MyDetailsScreen";
 import MemberDetailsScreen from "./src/components/screens/MemberDetailsScreen";
 import HomeScreen from "./src/components/screens/HomeScreen";
 import { AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import QRScannerScreen from "./src/components/screens/QRScannerScreen";
 
 const { width, height } = Dimensions.get("screen");
 const Stack = createStackNavigator();
@@ -24,7 +26,7 @@ export default function App() {
           headerTitleAlign: "center",
         }}
       >
-        {/* <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="WelcomeA"
           component={WelcomeScreenA}
@@ -36,10 +38,11 @@ export default function App() {
         />
         <Stack.Screen name="Sign In" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="MyDetails" component={MyDetailsScreen} />
-        <Stack.Screen name="MemberDetails" component={MemberDetailsScreen} /> */}
+        <Stack.Screen name="My Profile" component={MyDetailsScreen} />
+        <Stack.Screen name="MemberDetails" component={MemberDetailsScreen} />
+        <Stack.Screen name="QR Scanner" component={QRScannerScreen} />
         <Stack.Screen
-          options={{
+          options={({ navigation }) => ({
             headerTitle: (
               <Image
                 style={styles.image}
@@ -48,15 +51,21 @@ export default function App() {
             ),
             headerRight: () => (
               <View style={{ flexDirection: "row" }}>
-                <AntDesign
-                  name="user"
-                  size={24}
-                  color="#fff"
-                  style={{ paddingRight: 25 }}
-                />
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("My Profile");
+                  }}
+                >
+                  <AntDesign
+                    name="user"
+                    size={24}
+                    color="#fff"
+                    style={{ paddingRight: 25 }}
+                  />
+                </TouchableOpacity>
               </View>
             ),
-          }}
+          })}
           name="Home"
           component={HomeScreen}
         />

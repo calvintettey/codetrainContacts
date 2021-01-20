@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   return (
     <View style={styles.container}>
       <View>
@@ -43,7 +43,9 @@ export default function LoginScreen() {
       </View>
 
       <View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate("Home");
+          }} style={styles.button}>
           <Text style={styles.buttonText}>SIGN IN</Text>
         </TouchableOpacity>
       </View>
