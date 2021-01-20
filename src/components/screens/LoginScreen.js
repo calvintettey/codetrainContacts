@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -11,9 +12,10 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View>
         <Image
           style={styles.image}
@@ -43,9 +45,12 @@ export default function LoginScreen({navigation}) {
       </View>
 
       <View>
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity
+          onPress={() => {
             navigation.navigate("Home");
-          }} style={styles.button}>
+          }}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>SIGN IN</Text>
         </TouchableOpacity>
       </View>
@@ -109,14 +114,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  resetPasswordBox:{
+  resetPasswordBox: {
     width: 0.9 * width,
     flexDirection: "row",
     alignItems: "center",
   },
 
-  resetPassword:{
+  resetPassword: {
     borderBottomWidth: 1,
-    borderBottomColor:"red",
+    borderBottomColor: "red",
   },
 });

@@ -40,7 +40,7 @@ export default function App() {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="My Profile" component={MyDetailsScreen} />
         <Stack.Screen name="Member Profile" component={MemberDetailsScreen} />
-        
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="QR Scanner"

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -16,6 +17,7 @@ const { width, height } = Dimensions.get("screen");
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.body}>
         <View style={styles.textBox}>
           <Text style={styles.headText}>Exchange Contact Information</Text>
@@ -43,11 +45,16 @@ export default function HomeScreen({ navigation }) {
 
       <View style={styles.footer}>
         <View style={styles.footerBar}></View>
-        <Text style={{ fontSize: 16, color:"black" }}>Want to add a new connection?</Text>
-        <TouchableOpacity onPress={() => {
+        <Text style={{ fontSize: 16, color: "black" }}>
+          Want to add a new connection?
+        </Text>
+        <TouchableOpacity
+          onPress={() => {
             navigation.navigate("QR Scanner");
-          }} style={styles.scanBtn}>
-          <Text style={{ fontSize: 16, color:"#d91139" }}>Scan QR</Text>
+          }}
+          style={styles.scanBtn}
+        >
+          <Text style={{ fontSize: 16, color: "#d91139" }}>Scan QR</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -122,14 +129,14 @@ const styles = StyleSheet.create({
     // backgroundColor: "red",
   },
 
-  scanBtn:{
+  scanBtn: {
     marginLeft: 0.03 * width,
-    borderColor:"#d91139",
-    borderRadius:3,
-    borderWidth:1,
+    borderColor: "#d91139",
+    borderRadius: 3,
+    borderWidth: 1,
     height: 0.04 * height,
     width: 0.3 * width,
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
 });

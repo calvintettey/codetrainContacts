@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -13,6 +14,7 @@ const { width, height } = Dimensions.get("screen");
 export default function WelcomeScreenA({ navigation }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}

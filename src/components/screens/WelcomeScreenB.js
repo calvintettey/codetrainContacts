@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   Dimensions,
   StyleSheet,
   Text,
@@ -12,6 +13,7 @@ const { width, height } = Dimensions.get("screen");
 export default function WelcomeScreenB({ navigation }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View>
         <Image
           style={styles.image}
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    height: 0.50 * height,
+    height: 0.5 * height,
     width: 1 * width,
   },
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -15,6 +16,7 @@ const { width, height } = Dimensions.get("screen");
 export default function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.iconBox}>
         <AntDesign name="user" size={70} color="#d91139" />
         <Text style={styles.iconText}>ADD PROFILE PHOTO</Text>

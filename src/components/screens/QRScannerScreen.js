@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  StatusBar,
   Dimensions,
   StyleSheet,
   Text,
@@ -23,7 +24,7 @@ export default function QRScannerScreen({ navigation }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-      navigation.navigate("Member Profile")
+    navigation.navigate("Member Profile");
     // setScanned(true);
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
@@ -37,6 +38,7 @@ export default function QRScannerScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.body}>
         <BarCodeScanner
           onBarCodeScanned={handleBarCodeScanned}

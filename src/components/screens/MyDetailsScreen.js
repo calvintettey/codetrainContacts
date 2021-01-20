@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StatusBar,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -17,6 +18,7 @@ const { width, height } = Dimensions.get("screen");
 export default function MyDetailsScreen() {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.imageBox}>
         <Image
           style={styles.image}
