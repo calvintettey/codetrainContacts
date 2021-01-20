@@ -15,7 +15,7 @@ import {
   
 const { width, height } = Dimensions.get("screen");
 
-export default function MemberDetailsScreen() {
+export default function MemberDetailsScreen({navigation}) {
     return (
         <View style={styles.container}>
       <View style={styles.imageBox}>

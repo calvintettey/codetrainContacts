@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("screen");
 export default function QRScannerScreen({ navigation }) {
@@ -22,8 +23,9 @@ export default function QRScannerScreen({ navigation }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+      navigation.navigate("Member Profile")
+    // setScanned(true);
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
   if (hasPermission === null) {
@@ -37,11 +39,24 @@ export default function QRScannerScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.body}>
         <BarCodeScanner
-          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
 
-        <Text>Place QR Code Within Frame</Text>
+        <View style={styles.iconBox}>
+          <Ionicons name="flash-sharp" size={20} color="grey" />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Ionicons name="close-outline" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Text style={styles.scanText}>Place QR Code Within Frame</Text>
+        </View>
       </View>
 
       <View style={styles.footer}>
@@ -65,13 +80,27 @@ export default function QRScannerScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    flexDirection: "column",
+    backgroundColor: "#fcefcc",
+  },
+
+  iconBox: {
+    flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 0.06 * width,
   },
 
   body: {
     paddingHorizontal: 0.06 * width,
+    backgroundColor: "#000",
+    justifyContent: "space-around",
+    height: 0.88 * height,
+  },
+
+  scanText: {
+    color: "#fff",
+    paddingHorizontal: 0.1 * width,
+    textAlign: "center",
   },
 
   footer: {
@@ -79,12 +108,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 0.12 * height,
     alignItems: "flex-start",
-    // justifyContent: "space-around",
     alignItems: "center",
     paddingHorizontal: 0.06 * width,
     borderColor: "#adadad",
     borderTopWidth: 1,
-    // backgroundColor: "red",
   },
 
   scanBtn: {
