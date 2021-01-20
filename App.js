@@ -11,24 +11,34 @@ import MyDetailsScreen from "./src/components/screens/MyDetailsScreen";
 import MemberDetailsScreen from "./src/components/screens/MemberDetailsScreen";
 import HomeScreen from "./src/components/screens/HomeScreen";
 
-
 const Stack = createStackNavigator();
 export default function App() {
   return (
-            <NavigationContainer>
-              <StackActions.Navigator>
-                <Stack.Screen name="WelcomeA" component={WelcomeScreenA}/>
-                <Stack.Screen name="WelcomB" component={WelcomeScreenB}/>
-                <Stack.Screen name="Login" component={LoginScreen}/>
-                <Stack.Screen name="Register" component={RegisterScreen}/>
-                <Stack.Screen name="MyDetails" component={MyDetailsScreen}/>
-                <Stack.Screen name="MemberDetails" component={MemberDetailsScreen}/>
-                <Stack.Screen name="Home" component={HomeScreen}/>
-
-
-
-              </StackActions.Navigator>
-            </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "#d91139" },
+          headerTintColor: "#fff",
+          headerTitleAlign:"center"
+        }}
+      >
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="WelcomeA"
+          component={WelcomeScreenA}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="WelcomeB"
+          component={WelcomeScreenB}
+        />
+        <Stack.Screen name="Sign In" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="MyDetails" component={MyDetailsScreen} />
+        <Stack.Screen name="MemberDetails" component={MemberDetailsScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
     // <View style={styles.container}>
     //   {/* <WelcomeScreenA /> */}
