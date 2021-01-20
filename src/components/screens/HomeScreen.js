@@ -9,6 +9,7 @@ import {
     Image,
     TouchableOpacity,
   } from "react-native";
+  import { QRCode } from 'react-native-custom-qr-codes-expo';
 
   const { width, height } = Dimensions.get("screen");
   export default function HomeScreen() {
@@ -19,7 +20,9 @@ import {
                 <Text style={styles.subText}>Scan this QR below to share your contacts</Text>
             </View>
 
-            <View style={styles.qrBox}></View>
+            <View style={styles.qrBox}>
+            <QRCode codeStyle='square' content='https://reactnative.com'/>
+            </View>
 
             <View style={styles.imageBox}>
         <Image
