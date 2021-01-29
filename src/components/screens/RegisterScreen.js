@@ -160,9 +160,7 @@ class RegisterScreen extends Component {
 
           <View>
             <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Home");
-              }}
+              onPress={this.handleOnSubmit}
               style={styles.button}
             >
               <Text style={styles.buttonText}>R E G I S T E R</Text>
