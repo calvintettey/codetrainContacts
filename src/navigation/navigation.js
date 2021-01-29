@@ -14,10 +14,12 @@ import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import QRScannerScreen from "./src/components/screens/QRScannerScreen";
 import { connect } from "react-redux";
+import { logout } from "../redux/actions/authActions";
+
 
 const { width, height } = Dimensions.get("screen");
 const Stack = createStackNavigator();
-function AppContainer({ auth }) {
+function AppContainer({ auth, logout }) {
   return (
     <NavigationContainer>
       {auth.login ? (
@@ -57,6 +59,13 @@ function AppContainer({ auth }) {
                       color="#fff"
                       style={{ paddingRight: 25 }}
                     />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={{ marginRight: 20 }}
+                    onPress={logout}
+                  >
+                    <Text>Log Out</Text>
                   </TouchableOpacity>
                 </View>
               ),
@@ -109,4 +118,4 @@ const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect(mapStateToProp)(AppContainer);
+export default connect(mapStateToProp, {logout})(AppContainer);
