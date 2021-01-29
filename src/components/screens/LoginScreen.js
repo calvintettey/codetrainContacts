@@ -11,6 +11,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
+import {
+  loginEmailAccount,
+  loginError,
+} from "../../redux/actions/authActions";
 import React, { Component } from 'react'
 import { render } from "react-dom";
 
@@ -19,6 +23,24 @@ import { render } from "react-dom";
 const { width, height } = Dimensions.get("screen");
 
 class LoginScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    this.props.loginEmailAccount(this.state.email, this.state.password);
+  };
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -32,6 +54,11 @@ class LoginScreen extends Component {
         </View>
   
         <View style={styles.textinputBox}>
+
+        {auth.error.login && (
+            <Text style={{ color: "red" }}>{auth.error.login}</Text>
+          )}
+          
           <View style={styles.textOnRow}>
             <Text>Email</Text>
             <TextInput
@@ -54,9 +81,7 @@ class LoginScreen extends Component {
   
         <View>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Home");
-            }}
+            onPress={this.handleOnSubmit}
             style={styles.button}
           >
             <Text style={styles.buttonText}>SIGN IN</Text>
@@ -135,5 +160,9 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
 
-export default connect(mapStateToProp, { loginEmailAccount })(LoginScreen);
+
+export default connect(mapStateToProp, { loginEmailAccount, loginError })(LoginScreen);

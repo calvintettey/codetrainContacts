@@ -11,10 +11,36 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
+import {
+  createEmailAccount,
+  registerError,
+} from "../../redux/actions/authActions";
 import { AntDesign } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("screen");
 class RegisterScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      number: "",
+      role: "",
+      twitter: "",
+      linkdin: "",
+    };
+  }
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    this.props.createEmailAccount(this.state.email, this.state.password);
+  };
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -32,6 +58,10 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="Joan Shay"
               placeholderTextColor="#aaaaaa"
+              value={this.state.name}
+              onChangeText={(text) => {
+                this.handleUpdateState("name", text);
+              }}
             />
           </View>
 
@@ -43,6 +73,26 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="john.smith@mail.com"
               placeholderTextColor="#aaaaaa"
+              value={this.state.email}
+              onChangeText={(text) => {
+                this.handleUpdateState("email", text);
+              }}
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              placeholderTextColor="#aaaaaa"
+              secureTextEntry={true}
+              value={this.state.password}
+              onChangeText={(text) => {
+                this.handleUpdateState("password", text);
+              }}
             />
           </View>
 
@@ -54,6 +104,10 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="+233 (244) 245 190"
               placeholderTextColor="#aaaaaa"
+              value={this.state.number}
+              onChangeText={(text) => {
+                this.handleUpdateState("number", text);
+              }}
             />
           </View>
 
@@ -65,6 +119,10 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="Director of Marketing"
               placeholderTextColor="#aaaaaa"
+              value={this.state.role}
+              onChangeText={(text) => {
+                this.handleUpdateState("role", text);
+              }}
             />
           </View>
 
@@ -76,6 +134,10 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="@joansays"
               placeholderTextColor="#aaaaaa"
+              value={this.state.twitter}
+              onChangeText={(text) => {
+                this.handleUpdateState("twitter", text);
+              }}
             />
           </View>
 
@@ -87,6 +149,10 @@ class RegisterScreen extends Component {
               style={styles.textInput}
               placeholder="/joan.shay"
               placeholderTextColor="#aaaaaa"
+              value={this.state.linkdin}
+              onChangeText={(text) => {
+                this.handleUpdateState("linkdin", text);
+              }}
             />
           </View>
 
@@ -103,12 +169,6 @@ class RegisterScreen extends Component {
             </TouchableOpacity>
           </View>
         </View>
-
-        {/* <View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}></Text>
-        </TouchableOpacity>
-      </View> */}
       </View>
     );
   }
@@ -179,4 +239,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProp, { loginEmailAccount })(RegisterScreen);
+
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+
+export default connect(mapStateToProp, { createEmailAccount })(RegisterScreen);
