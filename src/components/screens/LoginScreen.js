@@ -10,57 +10,66 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { connect } from "react-redux";
+import React, { Component } from 'react'
+import { render } from "react-dom";
+
+
 
 const { width, height } = Dimensions.get("screen");
-export default function LoginScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View>
-        <Image
-          style={styles.image}
-          source={require("../../../assets/loginscreen.jpg")}
-        />
-      </View>
 
-      <View style={styles.textinputBox}>
-        <View style={styles.textOnRow}>
-          <Text>Email</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="john.smith@mail.com"
-            placeholderTextColor="#aaaaaa"
+class LoginScreen extends Component {
+  render() {
+    const { navigation, auth } = this.props;
+    return (
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <View>
+          <Image
+            style={styles.image}
+            source={require("../../../assets/loginscreen.jpg")}
           />
         </View>
-        <View style={styles.divider}></View>
-        <View style={styles.textOnRow}>
-          <Text>Password</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="12345sacsvf"
-            placeholderTextColor="#aaaaaa"
-            secureTextEntry={true}
-          />
+  
+        <View style={styles.textinputBox}>
+          <View style={styles.textOnRow}>
+            <Text>Email</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="john.smith@mail.com"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+          <View style={styles.divider}></View>
+          <View style={styles.textOnRow}>
+            <Text>Password</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="12345sacsvf"
+              placeholderTextColor="#aaaaaa"
+              secureTextEntry={true}
+            />
+          </View>
+        </View>
+  
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>SIGN IN</Text>
+          </TouchableOpacity>
+        </View>
+  
+        <View style={styles.resetPasswordBox}>
+          <Text>Forget? </Text>
+          <Text style={styles.resetPassword}>Reset Password</Text>
         </View>
       </View>
-
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>SIGN IN</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.resetPasswordBox}>
-        <Text>Forget? </Text>
-        <Text style={styles.resetPassword}>Reset Password</Text>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -125,3 +134,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "red",
   },
 });
+
+
+export default connect(mapStateToProp, { loginEmailAccount })(LoginScreen);

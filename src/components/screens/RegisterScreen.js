@@ -10,104 +10,108 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { connect } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("screen");
-export default function RegisterScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.iconBox}>
-        <AntDesign name="user" size={70} color="#d91139" />
-        <Text style={styles.iconText}>ADD PROFILE PHOTO</Text>
-      </View>
-
-      <View style={styles.textinputBox}>
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>Full Name</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Joan Shay"
-            placeholderTextColor="#aaaaaa"
-          />
+class RegisterScreen extends Component {
+  render() {
+    const { navigation, auth } = this.props;
+    return (
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <View style={styles.iconBox}>
+          <AntDesign name="user" size={70} color="#d91139" />
+          <Text style={styles.iconText}>ADD PROFILE PHOTO</Text>
         </View>
 
-        <View style={styles.divider}></View>
+        <View style={styles.textinputBox}>
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Full Name</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Joan Shay"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
 
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="john.smith@mail.com"
-            placeholderTextColor="#aaaaaa"
-          />
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="john.smith@mail.com"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Phone Number</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="+233 (244) 245 190"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Role</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Director of Marketing"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>Twitter</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="@joansays"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View style={styles.textOnRow}>
+            <Text style={styles.label}>LinkedIn</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="/joan.shay"
+              placeholderTextColor="#aaaaaa"
+            />
+          </View>
+
+          <View style={styles.divider}></View>
+
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Home");
+              }}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>R E G I S T E R</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <View style={styles.divider}></View>
-
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>Phone Number</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="+233 (244) 245 190"
-            placeholderTextColor="#aaaaaa"
-          />
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>Role</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Director of Marketing"
-            placeholderTextColor="#aaaaaa"
-          />
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>Twitter</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="@joansays"
-            placeholderTextColor="#aaaaaa"
-          />
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View style={styles.textOnRow}>
-          <Text style={styles.label}>LinkedIn</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="/joan.shay"
-            placeholderTextColor="#aaaaaa"
-          />
-        </View>
-
-        <View style={styles.divider}></View>
-
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Home");
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>R E G I S T E R</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* <View>
+        {/* <View>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}></Text>
         </TouchableOpacity>
       </View> */}
-    </View>
-  );
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -174,3 +178,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+export default connect(mapStateToProp, { loginEmailAccount })(RegisterScreen);
