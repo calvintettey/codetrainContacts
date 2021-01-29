@@ -21,85 +21,8 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: "#d91139" },
-          headerTintColor: "#fff",
-          headerTitleAlign: "center",
-        }}
-      >
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="WelcomeA"
-          component={WelcomeScreenA}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="WelcomeB"
-          component={WelcomeScreenB}
-        />
-        <Stack.Screen name="Sign In" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="My Profile" component={MyDetailsScreen} />
-        <Stack.Screen name="Member Profile" component={MemberDetailsScreen} />
 
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="QR Scanner"
-          component={QRScannerScreen}
-        />
-        <Stack.Screen
-          options={({ navigation }) => ({
-            headerTitle: (
-              <Image
-                style={styles.image}
-                source={require("./assets/codetrainlogo.png")}
-              />
-            ),
-            headerRight: () => (
-              <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("My Profile");
-                  }}
-                >
-                  <AntDesign
-                    name="user"
-                    size={24}
-                    color="#fff"
-                    style={{ paddingRight: 25 }}
-                  />
-                </TouchableOpacity>
-              </View>
-            ),
-          })}
-          name="Home"
-          component={HomeScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
     </Provider>
-
-    // <View style={styles.container}>
-    //   {/* <WelcomeScreenA /> */}
-
-    //   {/* <WelcomeScreenB /> */}
-
-    //   {/* <LoginScreen /> */}
-
-    //   {/* <RegisterScreen /> */}
-
-    //   {/* <MyDetailsScreen /> */}
-
-    //   {/* <MemberDetailsScreen /> */}
-
-    //   {/* <HomeScreen /> */}
-
-    //   {/* <StatusBar style="auto" /> */}
-
-    // {/* <QRScannerScreen /> */}
-    // </View>
   );
 }
 
