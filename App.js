@@ -13,11 +13,14 @@ import HomeScreen from "./src/components/screens/HomeScreen";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import QRScannerScreen from "./src/components/screens/QRScannerScreen";
+import { Provider } from "react-redux";
+import { store } from "./src/redux/store";
 
 const { width, height } = Dimensions.get("screen");
 const Stack = createStackNavigator();
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -76,6 +79,7 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
 
     // <View style={styles.container}>
     //   {/* <WelcomeScreenA /> */}
