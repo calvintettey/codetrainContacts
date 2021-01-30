@@ -12,10 +12,9 @@ import MemberDetailsScreen from "../components/screens/MemberDetailsScreen";
 import HomeScreen from "../components/screens/HomeScreen";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import QRScannerScreen from "./src/components/screens/QRScannerScreen";
+import QRScannerScreen from "../components/screens/QRScannerScreen";
 import { connect } from "react-redux";
 import { logout } from "../redux/actions/authActions";
-
 
 const { width, height } = Dimensions.get("screen");
 const Stack = createStackNavigator();
@@ -30,20 +29,14 @@ function AppContainer({ auth, logout }) {
             headerTitleAlign: "center",
           }}
         >
-          <Stack.Screen name="My Profile" component={MyDetailsScreen} />
-          <Stack.Screen name="Member Profile" component={MemberDetailsScreen} />
-
           <Stack.Screen
-            options={{ headerShown: false }}
-            name="QR Scanner"
-            component={QRScannerScreen}
-          />
-          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
             options={({ navigation }) => ({
               headerTitle: (
                 <Image
                   style={styles.image}
-                  source={require("./assets/codetrainlogo.png")}
+                  source={require("../../assets/codetrainlogo.png")}
                 />
               ),
               headerRight: () => (
@@ -55,14 +48,14 @@ function AppContainer({ auth, logout }) {
                   >
                     <AntDesign
                       name="user"
-                      size={24}
+                      size={22}
                       color="#fff"
-                      style={{ paddingRight: 25 }}
+                      style={{ paddingRight: 10 }}
                     />
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={{ marginRight: 20 }}
+                    style={{ marginRight: 10 }}
                     onPress={logout}
                   >
                     <Text>Log Out</Text>
@@ -70,9 +63,15 @@ function AppContainer({ auth, logout }) {
                 </View>
               ),
             })}
-            name="Home"
-            component={HomeScreen}
           />
+
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="QR Scanner"
+            component={QRScannerScreen}
+          />
+          <Stack.Screen name="My Profile" component={MyDetailsScreen} />
+          <Stack.Screen name="Member Profile" component={MemberDetailsScreen} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator
@@ -118,4 +117,4 @@ const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect(mapStateToProp, {logout})(AppContainer);
+export default connect(mapStateToProp, { logout })(AppContainer);

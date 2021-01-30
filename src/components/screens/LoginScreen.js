@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react'
 import {
   StatusBar,
   SafeAreaView,
@@ -15,8 +15,6 @@ import {
   loginEmailAccount,
   loginError,
 } from "../../redux/actions/authActions";
-import React, { Component } from 'react'
-import { render } from "react-dom";
 
 
 
@@ -55,9 +53,9 @@ class LoginScreen extends Component {
   
         <View style={styles.textinputBox}>
 
-        {auth.error.login && (
+        {/* {auth.error.login && (
             <Text style={{ color: "red" }}>{auth.error.login}</Text>
-          )}
+          )} */}
           
           <View style={styles.textOnRow}>
             <Text>Email</Text>
@@ -65,6 +63,10 @@ class LoginScreen extends Component {
               style={styles.textInput}
               placeholder="john.smith@mail.com"
               placeholderTextColor="#aaaaaa"
+              value={this.state.email}
+            onChangeText={(text) => {
+              this.handleUpdateState("email", text);
+            }}
             />
           </View>
           <View style={styles.divider}></View>
@@ -75,6 +77,10 @@ class LoginScreen extends Component {
               placeholder="12345sacsvf"
               placeholderTextColor="#aaaaaa"
               secureTextEntry={true}
+              value={this.state.password}
+            onChangeText={(text) => {
+              this.handleUpdateState("password", text);
+            }}
             />
           </View>
         </View>

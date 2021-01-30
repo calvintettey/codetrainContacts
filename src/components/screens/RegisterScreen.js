@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   StatusBar,
+  ScrollView,
   SafeAreaView,
   Dimensions,
   StyleSheet,
@@ -9,7 +10,9 @@ import {
   View,
   Image,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { connect } from "react-redux";
 import {
   createEmailAccount,
@@ -44,7 +47,11 @@ class RegisterScreen extends Component {
   render() {
     const { navigation, auth } = this.props;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        
+        style={styles.container}
+      >
+      
         <StatusBar style="auto" />
         <View style={styles.iconBox}>
           <AntDesign name="user" size={70} color="#d91139" />
@@ -167,7 +174,7 @@ class RegisterScreen extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -181,7 +188,7 @@ const styles = StyleSheet.create({
   },
 
   iconBox: {
-    marginBottom: 0.04 * height,
+    marginBottom: 0.02 * height,
     height: 0.22 * height,
     width: 1 * width,
     backgroundColor: "#ebdfbe",
@@ -228,7 +235,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 4,
-    marginVertical: 0.07 * height,
+    marginVertical: 0.04 * height,
   },
 
   buttonText: {
@@ -236,7 +243,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
 
 const mapStateToProp = (state) => {
   return { auth: state };
